@@ -44,6 +44,7 @@ h2{font:700 30px/1.1 "Barlow Condensed",sans-serif;margin:0 0 6px}
 @media(max-width:680px){.project{grid-template-columns:1fr;gap:18px;padding:20px}}
 .screen{border:7px solid var(--bezel);border-radius:10px;overflow:hidden;background:#fff;aspect-ratio:4/3}
 .screen img{width:100%;height:100%;object-fit:cover;display:block}
+.logo-box{border:1px solid var(--line);border-radius:10px;aspect-ratio:4/3;display:grid;place-items:center;background:var(--bg)}.logo-box img{width:34%;height:auto;border-radius:14px}
 .placeholder{border:2px dashed var(--line);border-radius:10px;aspect-ratio:4/3;display:grid;place-items:center;color:var(--soft)}
 .status{display:inline-block;margin-bottom:8px;padding:2px 8px;border-radius:4px;border:1px solid var(--line);color:var(--soft)}
 .status.live{color:var(--bg);background:var(--accent);border-color:var(--accent)}
@@ -80,7 +81,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px}
 
   <section class="section" id="projects">
     <h2>Progetti</h2>
-    <p class="mono">2 voci</p>
+    <p class="mono">3 voci</p>
 
     <article class="project">
       <a class="screen" href="/zaino/it/"><img src="/zaino/screenshots/schermo-zaino.png" alt="La pagina Zaino su un display e-paper" width="800" height="600"></a>
@@ -90,6 +91,17 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px}
         <p>Una dashboard scolastica per mio figlio su un display e-paper a quattro colori: il programma di oggi, l'orario con i colori della maestra e cosa mettere nello zaino per domani.</p>
         <ul class="tags mono"><li>ESP32-S3</li><li>e-paper</li><li>FastAPI</li><li>Docker</li><li>GPL-3.0</li></ul>
         <div class="links"><a href="/zaino/it/">Sito</a><a href="/zaino/">In English</a><a href="https://github.com/filippocobelli/zaino">Codice</a><a href="/zaino/it/#buy">Il display (3% di sconto)</a></div>
+      </div>
+    </article>
+
+    <article class="project">
+      <a class="logo-box" href="https://github.com/filippocobelli/echo"><img src="../img/echo.svg" alt="Logo di ECHO" width="160" height="160"></a>
+      <div>
+        <span class="status mono">anteprima</span>
+        <h3><a href="https://github.com/filippocobelli/echo">ECHO</a></h3>
+        <p>Firmware open source per gli e-reader Xteink X3 e X4: lettura EPUB con una tipografia migliore, calendario, dizionari, biblioteca cloud via WebDAV e cataloghi OPDS, con aggiornamenti via Wi-Fi. Deriva da CrossPoint Reader e cpr-vcodex.</p>
+        <ul class="tags mono"><li>ESP32-C3</li><li>e-reader</li><li>PlatformIO</li><li>MIT</li></ul>
+        <div class="links"><a href="https://github.com/filippocobelli/echo">Codice</a><a href="https://github.com/filippocobelli/echo/blob/main/USER_GUIDE.md">Guida (in inglese)</a></div>
       </div>
     </article>
 
