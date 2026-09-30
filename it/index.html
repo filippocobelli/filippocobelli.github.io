@@ -87,7 +87,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px}
     <article class="project">
       <a class="screen" href="/zaino/it/"><img src="/zaino/screenshots/schermo-zaino.png" alt="La pagina Zaino su un display e-paper" width="800" height="600"></a>
       <div>
-        <span class="status live mono">v1.3 · live</span>
+        <span class="status live mono" data-repo="filippocobelli/zaino">v1.3 · live</span>
         <h3><a href="/zaino/it/">Zaino</a></h3>
         <p>Una dashboard scolastica per mio figlio su un display e-paper a quattro colori: il programma di oggi, l'orario con i colori della maestra e cosa mettere nello zaino per domani.</p>
         <ul class="tags mono"><li>ESP32-S3</li><li>e-paper</li><li>FastAPI</li><li>Docker</li><li>GPL-3.0</li></ul>
@@ -98,11 +98,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px}
     <article class="project">
       <a class="hero-box" href="https://github.com/filippocobelli/echo"><img src="../img/echo-hero.webp" alt="ECHO su tre e-reader Xteink: biblioteca cloud, carosello dei libri e lettura" width="800" height="600"></a>
       <div>
-        <span class="status mono">anteprima</span>
+        <span class="status live mono" data-repo="filippocobelli/echo">v2026093001 · live</span>
         <h3><a href="https://github.com/filippocobelli/echo">ECHO</a></h3>
         <p>Firmware open source per gli e-reader Xteink X3 e X4: lettura EPUB con una tipografia migliore, calendario, dizionari, biblioteca cloud via WebDAV e cataloghi OPDS, con aggiornamenti via Wi-Fi. Deriva da CrossPoint Reader e cpr-vcodex.</p>
         <ul class="tags mono"><li>ESP32-C3</li><li>e-reader</li><li>PlatformIO</li><li>MIT</li></ul>
-        <div class="links"><a href="https://github.com/filippocobelli/echo">Codice</a><a href="https://github.com/filippocobelli/echo/blob/main/USER_GUIDE.md">Guida (in inglese)</a></div>
+        <div class="links"><a href="https://github.com/filippocobelli/echo/releases/latest">Scarica</a><a href="https://github.com/filippocobelli/echo/blob/main/USER_GUIDE.md">Guida (in inglese)</a><a href="https://github.com/filippocobelli/echo">Codice</a></div>
       </div>
     </article>
 
@@ -133,6 +133,23 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px}
   function label(){b.textContent=r.dataset.theme==="dark"?"chiaro":"scuro"}
   label();
   b.onclick=function(){r.dataset.theme=r.dataset.theme==="dark"?"light":"dark";try{localStorage.setItem("theme",r.dataset.theme)}catch(e){}label()};
+})();
+</script>
+<script>
+/* Versione automatica: ogni elemento con data-repo="utente/repository" mostra
+   il tag dell'ultima release GitHub ("vX · live"). Il testo scritto nella pagina
+   resta come riserva se GitHub non risponde. Risultato tenuto in memoria per 1 ora. */
+(function(){
+  document.querySelectorAll("[data-repo]").forEach(function(el){
+    var repo=el.getAttribute("data-repo"),key="release:"+repo,now=Date.now(),c=null;
+    function show(tag){if(tag)el.textContent="v"+String(tag).replace(/^v/i,"")+" · live"}
+    try{c=JSON.parse(localStorage.getItem(key))}catch(e){}
+    if(c&&c.tag){show(c.tag);if(now-c.t<3600000)return}
+    fetch("https://api.github.com/repos/"+repo+"/releases/latest",{headers:{Accept:"application/vnd.github+json"}})
+      .then(function(r){return r.ok?r.json():null})
+      .then(function(j){if(j&&j.tag_name){show(j.tag_name);try{localStorage.setItem(key,JSON.stringify({tag:j.tag_name,t:now}))}catch(e){}}})
+      .catch(function(){});
+  });
 })();
 </script>
 </body>
